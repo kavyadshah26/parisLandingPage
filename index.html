@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>landing page</title>
+<style>
+    .banner{
+width: 100%;
+}
+.banner-img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(#FFFAF0,#E03F4F);
+    text-align: center;
+}
+h1{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+.slideshow-c{
+    position: relative;
+    width: 90%;
+    height: 400px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 12px;
+}
+#mainImg{
+width: 100%;
+height: 400px;
+object-fit: cover;
+border-radius: 12px;
+}
+.btn{
+    position: absolute;
+    top:45% ;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.prev{
+    left: 10px;
+
+}
+.next{
+    right: 10px;
+}
+.thumb-c{
+display: flex;
+justify-content: center;
+margin-top: 20px;
+overflow-x: auto;
+gap: 10px;
+}
+.thumb-c img{
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+.thumb-c img:hover{
+    transform:scale(0.9);
+}
+
+.btn-next{
+    cursor: pointer;
+    font-size: 22px;
+    margin: 25px;
+    padding: 10px 30px;
+}
+    </style>
+</head>
+<body>
+
+    <div class="banner">
+        <img alt="paris" src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/1-paris-the-eiffel-tower-at-night-jean-schweitzer.jpg" class="banner-img">
+        </div>
+        <h1>Paris</h1>
+        <div class="slideshow-c">
+            <img alt="" src="https://th.bing.com/th/id/R.420e7e632c81706f53b1fb763d1aeaf4?rik=lLlSBuo0xOUbDw&pid=ImgRaw&r=0" id="mainImg">
+            <button class="btn prev" onclick="plusSlide(-1)"> < </button>
+            <button class="btn next" onclick="plusSlide(+1)"> > </button>
+        </div>
+
+        <div class="thumb-c" id="thumbs"></div>
+        <button class="btn-next" onclick="plusSlide(+1)">Next</button>
+        <!-- JS starts here -->
+        <script>
+            const images = [
+                "https://tse1.mm.bing.net/th/id/OIP.-SNIlg0wH66qDXWggADL1AHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+                 "https://resize-parismatch.lanmedia.fr/var/pm/public/media/image/2022/09/13/18/gettyimages-93228302.jpg?VersionId=dE48DHs09emRBHHUJ4.cyCqC60DpUHP8", 
+                 "https://tse1.mm.bing.net/th/id/OIP.L1GJ9ZVZMNpHVuAZOu1gHQHaEo?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+                 "https://upload.wikimedia.org/wikipedia/commons/a/a2/Notre_Dame_de_Paris_by_night_time.jpg",
+                 "https://th.bing.com/th/id/R.420e7e632c81706f53b1fb763d1aeaf4?rik=lLlSBuo0xOUbDw&pid=ImgRaw&r=0",
+            ];
+
+            let slideIndex = 0;
+            document.getElementById("mainImg").src = images[0];
+
+            let thumbBox = document.getElementById("thumbs");
+            
+            for(let i = 0; i<images.length;i++){
+let pic = document.createElement("img");
+pic.src = images[i];
+
+pic.onclick = function (){
+    slideIndex = i;
+document.getElementById("mainImg").src = images[slideIndex];
+}
+thumbBox.appendChild(pic);
+            }
+
+function plusSlide (n){
+    slideIndex = slideIndex + n;
+
+    if(slideIndex >= images.length){
+slideIndex = 0;
+    }
+
+    if(slideIndex<0){
+slideIndex = images.length-1;
+    }
+    document.getElementById("mainImg").src = images[slideIndex];
+}
+</script>
+</body>
+    </html>
